@@ -44,11 +44,11 @@
   transition: 0.3s ease;
 }
 
+.tw-followCard-button:hover {
+  background-color: #09f;
+}
+
 .tw-followCard-button.following:hover {
   color: white;
   background-color: red;
-}
-
-.tw-followCard-button:hover {
-  background-color: #09f;
 }

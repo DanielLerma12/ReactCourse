@@ -1,5 +1,5 @@
 {
-  "name": "02-tic-tac-toe",
+  "name": "03-mouse-follower",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "canvas-confetti": "1.9.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },

@@ -1,0 +1,21 @@
+{
+  "name": "react-prueba-tecnica",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "standard": "^17.1.2",
+    "vite": "^8.0.12"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "6.0.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslint.json"
+  }
+}

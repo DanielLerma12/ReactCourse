@@ -1,20 +1,19 @@
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useMemo, useCallback } from "react";
 import { searchMovies } from "../Services/movies";
 
-export function useMovies({ search, sort }) {
+export function useMovies({ sort }) {
   const searchDb = useRef("");
   const [movies, setMovies] = useState([]);
 
-  const getMovies = async () => {
+  const getMovies = useCallback(async ({ search }) => {
     if (searchDb.current === search) return;
     else searchDb.current = search;
 
     const newMovies = await searchMovies({ search });
     setMovies(newMovies);
-  };
+  }, []);
 
   const sortedMovies = useMemo(() => {
-    console.log("RAAAA");
     return sort
       ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
       : movies;

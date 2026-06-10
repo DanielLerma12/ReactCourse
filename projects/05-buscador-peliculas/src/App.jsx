@@ -7,11 +7,11 @@ import { useState } from "react";
 function App() {
   const [sort, setSort] = useState(false);
   const { search, updateSearch, error } = useSearch();
-  const { movies, getMovies } = useMovies({ search, sort });
+  const { movies, getMovies } = useMovies({ sort });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getMovies();
+    getMovies({ search });
   };
 
   const handleSort = () => {

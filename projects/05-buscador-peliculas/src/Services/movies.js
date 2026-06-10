@@ -5,7 +5,6 @@ export const searchMovies = async ({ search }) => {
       `http://www.omdbapi.com/?apikey=4287ad07&s=${search}`,
     );
     const data = await response.json();
-    console.log(data);
 
     const movies = data.Search;
     console.log(movies);

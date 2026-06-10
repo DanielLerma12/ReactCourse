@@ -21,5 +21,8 @@
   "private": true,
   "workspaces": [
     "projects/*"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^10.4.1"
+  }
 }

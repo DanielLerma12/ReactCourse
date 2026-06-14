@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { useMovies } from "./Hooks/useMovies.js";
 import { useSearch } from "./Hooks/useSearch.js";

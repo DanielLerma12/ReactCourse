@@ -1,17 +1,38 @@
-import { Link } from "../Link.jsx";
+import { Link } from "../components/Link";
 
-export default function AboutPage() {
+const i18n = {
+  es: {
+    title: "Sobre nosotros",
+    button: "Ir a la home",
+    description:
+      "¡Hola! Me llamo Miguel Ángel y estoy creando un clon de React Router.",
+  },
+  en: {
+    title: "About us",
+    button: "Go to home page",
+    description:
+      "Hi! My name is Miguel Ángel and I am creating a clone of React Router.",
+  },
+};
+
+const useI18n = (lang) => {
+  return i18n[lang] || i18n.en;
+};
+
+export default function AboutPage({ routeParams }) {
+  const i18n = useI18n(routeParams.lang ?? "es");
+
   return (
     <>
-      <h1>About</h1>
+      <h1>{i18n.title}</h1>
       <div>
-        <p>Hola me llamo Lerma y estoy creando un clon de react router</p>
         <img
-          src="https://pbs.twimg.com/profile_images/1978222481774108672/mx0kGZO8_400x400.jpg"
-          alt="Foto de lerma"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJdTI0T0kLgZj4aWK2KCkMnOWqot1ItlyGIg&s"
+          alt="Foto de midudev"
         />
+        <p>{i18n.description}</p>
       </div>
-      <Link to="/">Ir a Home</Link>
+      <Link to="/">{i18n.button}</Link>
     </>
   );
 }

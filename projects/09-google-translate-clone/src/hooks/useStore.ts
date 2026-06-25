@@ -20,10 +20,14 @@ function reducer(state: State, action: Action) {
   if (type === "INTERCHANGE_LANGUAGES") {
     if (state.fromLanguage === AUTO_LANGUAGUE) return state;
 
+    const loading = state.fromText !== "";
+
     return {
       ...state,
       fromLanguage: state.toLanguage,
       toLanguage: state.fromLanguage,
+      loading,
+      result: "",
     };
   }
   if (type === "SET_FROM_LANGUAGE") {

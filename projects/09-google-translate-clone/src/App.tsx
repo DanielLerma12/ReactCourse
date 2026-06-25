@@ -3,13 +3,14 @@ import { Container, Row, Col, Button, Stack } from "react-bootstrap";
 
 import "./App.css";
 import { AUTO_LANGUAGUE } from "./constants";
-import { ArrowInterButton } from "./components/icons";
+import { ArrowInterButton, SpeakerButton } from "./components/icons";
 import { LanguageSelector } from "./components/LanguageSelector";
 import { SectionType } from "./types.d";
 import { TextArea } from "./components/TextArea";
 import { useEffect } from "react";
 import { translate } from "./services/translate";
 import { useDebounce } from "./hooks/useDebounce";
+import { CopyButton } from "./components/icons";
 
 function App() {
   const {
@@ -25,7 +26,6 @@ function App() {
 
   useEffect(() => {
     if (debouncedFromText === "") return;
-    console.log("translate");
     translate({
       fromLanguage: state.fromLanguage,
       toLanguage: state.toLanguage,
@@ -37,6 +37,12 @@ function App() {
       })
       .catch(() => setResult("Error"));
   }, [debouncedFromText, state.fromLanguage, state.toLanguage]);
+
+  const handleSpeak = () => {
+    const utterance = new SpeechSynthesisUtterance(state.result);
+    utterance.lang = state.toLanguage;
+    speechSynthesis.speak(utterance);
+  };
 
   return (
     <Container fluid>
@@ -74,12 +80,41 @@ function App() {
               value={state.toLanguage}
               onChange={setToLanguage}
             />
-            <TextArea
-              type={SectionType.To}
-              value={state.result}
-              onChange={setResult}
-              loading={state.loading}
-            />
+            <div style={{ position: "relative" }}>
+              <TextArea
+                type={SectionType.To}
+                value={state.result}
+                onChange={setResult}
+                loading={state.loading}
+              />
+
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  bottom: 0,
+                  display: "flex",
+                }}
+              >
+                {" "}
+                <Button
+                  variant="link"
+                  style={{ position: "absolute", left: 0, bottom: 0 }}
+                  onClick={() => {
+                    navigator.clipboard.writeText(state.result);
+                  }}
+                >
+                  {<CopyButton />}
+                </Button>
+                <Button
+                  variant="link"
+                  onClick={handleSpeak}
+                  style={{ position: "absolute", left: 50, bottom: 0 }}
+                >
+                  {<SpeakerButton />}
+                </Button>
+              </div>
+            </div>
           </Stack>
         </Col>
       </Row>
